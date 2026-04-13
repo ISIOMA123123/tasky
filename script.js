@@ -16,4 +16,36 @@ checkbox.addEventListener("change", function name(params) {
 
 const dueDateElement = document.getElementById("dueDate");
 
-const timeRemainingElement = document.getElementById
+const timeRemainingElement = document.getElementById("timeRemaining");
+
+// set fixed date
+const dueDate = new Date("2026-04-30T18:00:00");
+
+// show due date
+dueDateElement.textContent = "Due " + dueDate.toDateString();
+
+// calculate time remaining
+
+function updateTime() {
+
+    const now = new Date();
+    const diff = dueDate - now;
+
+    const minutes = Math.floor(diff / 60000);
+    const hours = Math.floor(diff / 3600000);
+    const days = Math.floor(diff / 86400000);
+
+    if (diff < 0) {
+        timeRemainingElement.textContent = "Overdue";
+    } else if (minutes < 1) {
+        timeRemainingElement.textContent = "Due now!";
+    } else if (hours < 1) {
+        timeRemainingElement.textContent = "Due in " + minutes + " minutes";
+    } else if (days < 1) {
+        timeRemainingElement.textContent = "Due in " + hours + " hours";
+    } else {
+        timeRemainingElement.textContent = "Due in " + days + " days";
+    }
+
+    
+}
