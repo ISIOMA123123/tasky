@@ -45,7 +45,21 @@ function updateTime() {
         timeRemainingElement.textContent = "Due in " + hours + " hours";
     } else {
         timeRemainingElement.textContent = "Due in " + days + " days";
-    }
-
-    
+    }   
 }
+
+// Single run
+updateTime();
+
+// Update every 60 seconds
+setInterval(updateTime, 60000);
+
+document.querySelector("[data-testid='test-todo-edit-button']")
+  .addEventListener("click", function () {
+    console.log("Edit clicked");
+  });
+
+document.querySelector("[data-testid='test-todo-delete-button']")
+  .addEventListener("click", function () {
+    alert("Delete clicked");
+  });
