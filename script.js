@@ -1,32 +1,50 @@
+let dueDate = new Date();
+
 const checkbox = document.getElementById("checkbox");
 const title = document.getElementById("title");
+const description = document.getElementById("description");
+const priority = document.getElementById("priority");
 const statusText = document.getElementById("status");
 
 const dueDateElement = document.getElementById("dueDate");
 const timeRemainingElement = document.getElementById("timeRemaining");
 
-// Fixed due date (you can change this)
-const dueDate = new Date("2026-04-20T18:00:00");
+// ADD TASK
+function addTask() {
+  const taskInput = document.getElementById("taskInput").value;
+  const priorityInput = document.getElementById("priorityInput").value;
+  const dateInput = document.getElementById("dateInput").value;
 
-// Show due date
-dueDateElement.textContent = "Due " + dueDate.toDateString();
-dueDateElement.setAttribute("datetime", dueDate.toISOString());
+  if (!taskInput || !dateInput) {
+    alert("Enter task and date");
+    return;
+  }
 
-// Time calculation
+  title.textContent = taskInput;
+  description.textContent = "User task";
+  priority.textContent = priorityInput;
+
+  // Change badge color
+  priority.className = "badge " + priorityInput.toLowerCase();
+
+  dueDate = new Date(dateInput);
+  dueDateElement.textContent = "Due " + dueDate.toDateString();
+
+  updateTime();
+}
+
+// TIME LOGIC
 function updateTime() {
   const now = new Date();
   const diff = dueDate - now;
 
-  const minutes = Math.floor(diff / 60000);
   const hours = Math.floor(diff / 3600000);
   const days = Math.floor(diff / 86400000);
 
   if (diff < 0) {
     timeRemainingElement.textContent = "Overdue";
-  } else if (minutes < 1) {
-    timeRemainingElement.textContent = "Due now!";
   } else if (hours < 1) {
-    timeRemainingElement.textContent = "Due in " + minutes + " minutes";
+    timeRemainingElement.textContent = "Due now!";
   } else if (days === 0) {
     timeRemainingElement.textContent = "Due today";
   } else if (days === 1) {
@@ -36,13 +54,9 @@ function updateTime() {
   }
 }
 
-// Run immediately
-updateTime();
-
-// Update every 60 seconds
 setInterval(updateTime, 60000);
 
-// Checkbox behavior
+// CHECKBOX
 checkbox.addEventListener("change", function () {
   if (checkbox.checked) {
     title.classList.add("done");
@@ -53,15 +67,12 @@ checkbox.addEventListener("change", function () {
   }
 });
 
-// Buttons
+// BUTTONS
 document.querySelector("[data-testid='test-todo-edit-button']")
-  .addEventListener("click", function () {
-    console.log("Edit clicked");
-  });
+  .addEventListener("click", () => console.log("Edit clicked"));
 
 document.querySelector("[data-testid='test-todo-delete-button']")
-  .addEventListener("click", function () {
-    alert("Delete clicked");
-  });
+  .addEventListener("click", () => alert("Delete clicked"));
+
 
   
