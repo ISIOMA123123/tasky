@@ -34,7 +34,9 @@ function addTask() {
   }
 
   title.textContent = taskInput;
+
   priority.textContent = priorityInput;
+
   description.textContent = descriptionInput;
 
   // Change badge color
@@ -82,10 +84,14 @@ checkbox.addEventListener("change", function () {
 
 // BUTTONS
 document.querySelector("[data-testid='test-todo-edit-button']")
-  .addEventListener("click", () => console.log("Edit clicked"));
+  .addEventListener("click", () => {
+    formInput.style.display = "block";
+  });
 
 document.querySelector("[data-testid='test-todo-delete-button']")
-  .addEventListener("click", () => alert("Delete clicked"));
+  .addEventListener("click", () => {
+    title.textContent = "Click on Edit to input a task"
+  });
 
 
   
