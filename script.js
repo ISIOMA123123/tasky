@@ -1,16 +1,29 @@
 let dueDate = new Date();
 
+
+// where things in the form will be displayed
 const checkbox = document.getElementById("checkbox");
 const title = document.getElementById("title");
 const description = document.getElementById("description");
 const priority = document.getElementById("priority");
 const statusText = document.getElementById("status");
+const formInput = document.getElementById("formInput");
 
 const dueDateElement = document.getElementById("dueDate");
 const timeRemainingElement = document.getElementById("timeRemaining");
 
-// ADD TASK
+//Forms
+
+//Cancel Task
+function cancelTask() {
+  formInput.style.display = "none";
+}
+
+
+// ADD TASK 
 function addTask() {
+
+  const descriptionInput = document.getElementById("descriptionInput").value;
   const taskInput = document.getElementById("taskInput").value;
   const priorityInput = document.getElementById("priorityInput").value;
   const dateInput = document.getElementById("dateInput").value;
@@ -21,8 +34,8 @@ function addTask() {
   }
 
   title.textContent = taskInput;
-  description.textContent = "User task";
   priority.textContent = priorityInput;
+  description.textContent = descriptionInput;
 
   // Change badge color
   priority.className = "badge " + priorityInput.toLowerCase();

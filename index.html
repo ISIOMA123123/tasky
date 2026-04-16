@@ -14,6 +14,8 @@
     <div class="form">
     <input type="text" id="taskInput" placeholder="Enter task">
 
+    <textarea name="" id="descriptionInput" data-testid="test-todo-edit-description-input"></textarea>
+
     <select id="priorityInput">
         <option value="High">High</option>
         <option value="Medium">Medium</option>
@@ -23,17 +25,20 @@
     <input type="date" id="dateInput">
 
     <button onclick="addTask()">Add Task</button>
+
+    <!--Cancel task-->
+    <button onclick="cancelTask()" data-testid="test-todo-cancelTask"> Cancel </button>
     </div>
 
     <!-- TODO CARD -->
     <article data-testid="test-todo-card">
 
     <h3 data-testid="test-todo-title" id="title">
-        Your Task Will Appear Here
+        Click on edit to add a task
     </h3>
 
     <p data-testid="test-todo-description" id="description">
-        Add a task above
+        The description of your task will appear here
     </p>
 
     <span class="badge high"
