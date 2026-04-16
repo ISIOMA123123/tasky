@@ -83,14 +83,19 @@ checkbox.addEventListener("change", function () {
 });
 
 // BUTTONS
+// edit
 document.querySelector("[data-testid='test-todo-edit-button']")
   .addEventListener("click", () => {
     formInput.style.display = "block";
   });
 
+  //delete
 document.querySelector("[data-testid='test-todo-delete-button']")
   .addEventListener("click", () => {
     title.textContent = "Click on Edit to input a task"
+
+   description.textContent ="Describe your task"; 
+
   });
 
 
